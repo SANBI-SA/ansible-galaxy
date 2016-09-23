@@ -25,7 +25,7 @@ galaxy_git_repo: https://github.com/galaxyproject/galaxy.git
 
 # This can be a tag (as shown here) but doing so will cause the revision check
 # task to always report "changed"
-galaxy_changeset_id: stable
+galaxy_changeset_id: release_16_04
 
 # Download URL (if used)
 galaxy_download_url: "{{ galaxy_repo }}/get/{{ galaxy_changeset_id }}.tar.gz"
