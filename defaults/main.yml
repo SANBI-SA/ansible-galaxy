@@ -63,7 +63,7 @@ galaxy_config_default:
     shed_tool_data_table_config: "{{ galaxy_mutable_config_dir }}/shed_tool_data_table_conf.xml"
     tool_config_file: "{{ galaxy_server_dir }}/config/tool_conf.xml.sample,{{ galaxy_shed_tool_conf_file }}"
     tool_data_table_config_path: "{{ galaxy_server_dir }}/config/tool_data_table_conf.xml.sample"
-    tool_sheds_config_file: "{{ galaxy_server_dir }}/config/tool_sheds_conf.xml.sample"
+    tool_sheds_config_file: "{{ galaxy_server_dir }}/config/tool_sheds_conf.xml"
     ucsc_build_sites: "{{ galaxy_server_dir }}/tool-data/shared/ucsc/ucsc_build_sites.txt.sample"
     visualization_plugins_directory: "config/plugins/visualizations"
 
