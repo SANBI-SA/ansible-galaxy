@@ -1,5 +1,5 @@
 ---
-# main tasks file for galaxyprojectdotorg.galaxy
+# main tasks file for galaxyproject.galaxy
 
 # Deploy a Galaxy server
 #   https://wiki.galaxyproject.org/
@@ -20,10 +20,13 @@
    - galaxy_config_files
 
 - include: dependencies.yml
-  when: galaxy_fetch_dependencies and galaxy_fetch_eggs
+  when: galaxy_fetch_dependencies
 
 - include: mutable_setup.yml
   when: galaxy_manage_mutable_setup
 
 - include: database.yml
   when: galaxy_manage_database
+
+- include: errordocs.yml
+  when: galaxy_manage_errordocs

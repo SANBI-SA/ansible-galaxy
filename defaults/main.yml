@@ -1,10 +1,9 @@
 ---
-# defaults file for galaxyprojectdotorg.galaxy
+# defaults file for galaxyproject.galaxy
 
 # Controls which tasks are included, in case you need to perform different
 # options on different hosts or server directories.
 galaxy_manage_clone: yes
-galaxy_vcs: hg
 galaxy_force_checkout: no
 # Download the Galaxy instead cloning, for throw away boxes (e.g. Docker)
 galaxy_manage_download: no
@@ -12,25 +11,18 @@ galaxy_manage_static_setup: yes
 galaxy_manage_mutable_setup: yes
 galaxy_manage_database: yes
 galaxy_fetch_dependencies: yes
+galaxy_manage_errordocs: no
 
-# Set a version of pip to install
-galaxy_pip_version: 8.0.2
-
-# legacy
-galaxy_fetch_eggs: yes
-
-# Where to clone Galaxy from
-galaxy_repo: https://bitbucket.org/galaxy/galaxy-dist
-#galaxy_git_repo: https://github.com/SANBI-SA/galaxy.git
-galaxy_git_repo: https://github.com/galaxyproject/galaxy.git
+# Where to clone Galaxy from. Backwards compatibility with galaxy_git_repo
+galaxy_repo: "{{ galaxy_git_repo | default('https://github.com/galaxyproject/galaxy.git') }}"
 
 # This can be a tag (as shown here) but doing so will cause the revision check
-# task to always report "changed"
-galaxy_changeset_id: release_18_01
-#galaxy_changeset_id: combat_tb_uploader_with_gzipped
+# task to always report "changed". Backwards compatibility with
+# galaxy_changeset_id.
+galaxy_commit_id: "{{ galaxy_changeset_id | default('master') }}"
 
 # Download URL (if used)
-galaxy_download_url: "{{ galaxy_repo }}/get/{{ galaxy_changeset_id }}.tar.gz"
+galaxy_download_url: "{{ galaxy_repo }}/get/{{ galaxy_commit_id }}.tar.gz"
 
 # This will automatically be used by run.sh
 galaxy_venv_dir: "{{ galaxy_server_dir }}/.venv"
@@ -90,6 +82,12 @@ galaxy_mutable_configs:
     dest: "{{ galaxy_config['app:main']['shed_data_manager_config_file'] if galaxy_config is defined and 'app:main' in galaxy_config and 'shed_data_manager_config_file' in galaxy_config['app:main'] else galaxy_config_default['app:main']['shed_data_manager_config_file'] }}"
   - src: "{{ galaxy_server_dir }}/config/shed_tool_data_table_conf.xml.sample"
     dest: "{{ galaxy_config['app:main']['shed_tool_data_table_config'] if galaxy_config is defined and 'app:main' in galaxy_config and 'shed_tool_data_table_config' in galaxy_config['app:main'] else galaxy_config_default['app:main']['shed_tool_data_table_config'] }}"
+
+galaxy_config_error_email_to: "{{ galaxy_config['app:main']['error_email_to'] | default('') if galaxy_config is defined and galaxy_config['app:main'] is defined else '' }}"
+galaxy_config_instance_resource_url: "{{ galaxy_config['app:main']['instance_resource_url'] | default('') if galaxy_config is defined and galaxy_config['app:main'] is defined else '' }}"
+galaxy_errordocs_server_name: Galaxy
+galaxy_errordocs_prefix: /error
+
 
 # These are lists of hashes in the same format as galaxy_mutable_configs that
 # can be used to cause extra files and templates to be installed on the managed
