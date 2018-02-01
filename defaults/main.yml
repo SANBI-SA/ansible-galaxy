@@ -21,12 +21,13 @@ galaxy_fetch_eggs: yes
 
 # Where to clone Galaxy from
 galaxy_repo: https://bitbucket.org/galaxy/galaxy-dist
-galaxy_git_repo: https://github.com/SANBI-SA/galaxy.git
+#galaxy_git_repo: https://github.com/SANBI-SA/galaxy.git
+galaxy_git_repo: https://github.com/galaxyproject/galaxy.git
 
 # This can be a tag (as shown here) but doing so will cause the revision check
 # task to always report "changed"
-#galaxy_changeset_id: release_16_04
-galaxy_changeset_id: combat_tb_uploader_with_gzipped
+galaxy_changeset_id: release_18_01
+#galaxy_changeset_id: combat_tb_uploader_with_gzipped
 
 # Download URL (if used)
 galaxy_download_url: "{{ galaxy_repo }}/get/{{ galaxy_changeset_id }}.tar.gz"
