@@ -19,7 +19,7 @@ galaxy_repo: "{{ galaxy_git_repo | default('https://github.com/galaxyproject/gal
 # This can be a tag (as shown here) but doing so will cause the revision check
 # task to always report "changed". Backwards compatibility with
 # galaxy_changeset_id.
-galaxy_commit_id: "{{ galaxy_changeset_id | default('master') }}"
+galaxy_commit_id: "{{ galaxy_changeset_id | default('release_18.01') }}"
 
 # Download URL (if used)
 galaxy_download_url: "{{ galaxy_repo }}/get/{{ galaxy_commit_id }}.tar.gz"
